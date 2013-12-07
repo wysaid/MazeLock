@@ -1,0 +1,15 @@
+# Microsoft Developer Studio Generated Dependency File, included by MazeLock.mak
+
+.\MazeLock.cpp : \
+	"..\..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\..\..\..\program files\microsoft visual studio\vc98\include\ege.h"\
+	"..\..\..\..\program files\microsoft visual studio\vc98\include\graphics.h"\
+	".\wysaid.h"\
+	
+
+.\wysaid.cpp : \
+	"..\..\..\..\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	"..\..\..\..\program files\microsoft visual studio\vc98\include\ege.h"\
+	"..\..\..\..\program files\microsoft visual studio\vc98\include\graphics.h"\
+	".\wysaid.h"\
+	
