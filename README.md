@@ -9,3 +9,4 @@
 </a></p>
 <h3>截图</h3>
 <p><img src="https://raw.github.com/wysaid/MazeLock/master/shotcut.jpg"></p>
+<iframe src="https://raw.github.com/wysaid/MazeLock/master/MazeGenerator.html"></iframe>
