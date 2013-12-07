@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>Maze Auto Generator</title>
+    <link rel="shortcut icon"href="favicon.ico">
+</head>
+<body>
+<center>
+<a href = "http://blog.wysaid.org/63.html" target = "_blank">
+<img src = "https://raw.github.com/wysaid/MazeLock/master/pj.gif"></a>
+</br>
+<h3>
+Tips:
+<a href = "https://github.com/wysaid/MazeLock">Click here </a>
+to see how to solve the maze!<font color="#ff0000">Source Code</font>
+</h3>
+<table>
+<tr>
+<td>
+<button id='maze_gen_btn' onclick='on_gen_maze()'>Gen Maze</button>
+</td>
+<td>
+<input id='maze_w' type='number' value='40' />
+</td>
+<td>
+<input id='maze_h' type='number' value='30' />
+</td>
+</tr>
+</table>
+<div><textarea id="maze_out" style='font-family: "WenQuanYi Zen Hei Mono,NSimSun,Arial,Monospace";'></textarea></div>
+<p>        <script id = 'wysaid' type="text/javascript">
+function new_maze() {
+    var output = "";
+    var smap = ["¡¡","©§","©¥","©¿","©§","©§","©·","©Ï","©¥","©»","©¥","©ß","©³","©Ç","©×","©ï"];
+    var d = [[0,1],[1,0],[0,-1],[-1,0]];
+    var _map = null;
+    return {
+        init :
+            function (w, h) {
+                var x, y, rw = w+2, rh = h+2;
+                _map = new Array(rh);
+                for (y = 0; y < rh; ++y) {
+                    _map[y] = new Array(rw);
+                    m = _map[y];
+                    for (x = 0; x < rw; ++x) {
+                        m[x] = 0;
+                    }
+                }
+                for (y=0; y<rh; ++y) {
+                    _map[y][0]|=10, _map[y][rw-1]|=10;
+                }
+                for (x=0; x<rw; ++x) {
+                    _map[0][x]|=5, _map[rh-1][x]|=5;
+                }
+            },
+        dfs :
+            function (x, y) {
+                if (_map[y][x]) return 0; else _map[y][x] |= 0x10;
+                var f=parseInt(Math.random()*4), i=0, p=(Math.random()<0.5?3:1);
+                for (; i<4; ++i,f=(f+p)%4) {
+                    var u = x+d[f][1], v = y+d[f][0];
+                    if (this.dfs(u, v)) {
+                        _map[y][x] |= 1<<f;
+                        _map[v][u] |= (1<<((f+2)%4));
+                    }
+                }
+                return 1;
+            },
+        gen :
+            function (w, h) {
+                var x, y;
+                this.init(w, h);
+                this.dfs(1, 1);
+                output = "";
+                _map[1][1] |= 4;
+                _map[h][w] |= 1;
+                for (y=1; y<h+2; ++y,output += "\n") {
+                    for (x=1; x<w+2; ++x) {
+                        output += smap[15^((_map[y-1][x-1]&3)|(_map[y][x]&12))];
+                    }
+                }
+            },
+        out :
+            function () {
+                return output;
+            },
+    }
+}
+
+function on_gen_maze() {
+    var textarea = document.getElementById("maze_out");
+    var text_w = document.getElementById("maze_w");
+    var text_h = document.getElementById("maze_h");
+    if (textarea && text_w && text_h) {
+        var w, h;
+        var obj = new_maze();
+        w = parseInt(text_w.value);
+        h = parseInt(text_h.value);
+        obj.gen(w, h);
+        textarea.value = obj.out();
+    }
+}
+
+function init() {
+    var textarea = document.getElementById("maze_out");
+    textarea.innerHTML = "Init OK!";
+    textarea.rows = 40;
+    textarea.cols = 80;
+    document.getElementById("hints").innerHTML = "";
+}
+
+init();
+</script>
+<p>Some Browser May Not Work Well With This Page, Try some other browser such as Chrome or firefox instead.</p>
+</center>
+
+
+</body>
+</html>
