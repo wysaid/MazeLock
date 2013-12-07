@@ -7,5 +7,9 @@
 <p><a href= "http://blog.wysaid.org/p/maze.php" target="_blank">
 点击访问(Click Here to see)MazeGenerator.
 </a></p>
+<p> 如果直接下载zip文件的话，Github会自动修改换行格式，所以可能导致vc6.0工程无法打开。请使用目录下的sln解决方案。此方案为vs2012版。你也可以使用Notepad++等工具将dsw和dsp文件换行格式转换为PC格式之后再用vc6.0打开 </p>
+
+<h4><b><i>If you cannot open the project with the ".dsw" file, try the ".sln" one with VS2012 instead.</i></b><h4>
+
 <h3>截图(ShortCut)</h3>
 <p><img src="https://raw.github.com/wysaid/MazeLock/master/shotcut.jpg"></p>
