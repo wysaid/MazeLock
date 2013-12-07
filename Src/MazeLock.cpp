@@ -7,26 +7,26 @@ int main()
 {
 	initgraph(SCR_WIDTH, SCR_HEIGHT);
 	setrendermode(RENDER_AUTO);
-	setcaption("ÇëÔÚµ¯³ö¶Ô»°¿òÄÚÑ¡ÔñµØÍ¼ÎÄ±¾ÎÄ¼ş!");
+	setcaption("è¯·åœ¨å¼¹å‡ºå¯¹è¯æ¡†å†…é€‰æ‹©åœ°å›¾æ–‡æœ¬æ–‡ä»¶!");
 	cleardevice();
 	if(getFileNameDlg(getHWnd(), g_filename))
 	{
-		setcaption("EGEÖ®ÎŞÁÄ×¨ÃÅ½âÅÚ½ãµÄÃÔ¹¬Ğ¡Ó¦ÓÃ¿ªÊ¼ÔË×ª~~");
+		setcaption("EGEä¹‹æ— èŠä¸“é—¨è§£ç‚®å§çš„è¿·å®«å°åº”ç”¨å¼€å§‹è¿è½¬~~");
 		if(!mazeLock())
 		{
 			cleardevice();
-			outtextxy(20, 200, "ÄãÕâÃÔ¹¬²»¿ÆÑ§°¡! ÎªÃ«ÎÒ×ß²»´ÖÈ¥!¿ÓµùÄØ!");
-			outtextxy(10, 300, "ÃÔ¹¬ÒªÔÚhttp://blog.misakamm.org/p/404Éú³É°¡Ç×!");
-			outtextxy(20, 400, "°´ÏÂEnter¼ü°É£¬ÎÒ°ÑÄãËÍ¹ıÈ¥~~²»È»¾Í²»¸úÄãÍæÁË~~");
+			outtextxy(20, 200, "ä½ è¿™è¿·å®«ä¸ç§‘å­¦å•Š! ä¸ºæ¯›æˆ‘èµ°ä¸ç²—å»!å‘çˆ¹å‘¢!");
+			outtextxy(10, 300, "è¿·å®«è¦åœ¨http://blog.misakamm.org/p/404ç”Ÿæˆå•Šäº²!");
+			outtextxy(20, 400, "æŒ‰ä¸‹Enteré”®å§ï¼Œæˆ‘æŠŠä½ é€è¿‡å»~~ä¸ç„¶å°±ä¸è·Ÿä½ ç©äº†~~");
 			if(getch() == '\r')
 				ShellExecuteA(getHWnd(), "open", "http://blog.misakamm.org/p/404", NULL, NULL, SW_SHOWMAXIMIZED);
 		}
 	}
 	else
 	{
-		outtextxy(100, 100,"ÄúÈ¡ÏûÁËÎÄ±¾Ñ¡Ôñ¶Ô»°¿ò¡£Èç¹û²»ÖªµÀµØÍ¼ÎÄ±¾ÔÚÄÄ£¬Çë²Î¿¼: ");
+		outtextxy(100, 100,"æ‚¨å–æ¶ˆäº†æ–‡æœ¬é€‰æ‹©å¯¹è¯æ¡†ã€‚å¦‚æœä¸çŸ¥é“åœ°å›¾æ–‡æœ¬åœ¨å“ªï¼Œè¯·å‚è€ƒ: ");
 		outtextxy(100, 120, "http://tieba.baidu.com/p/1966519660");	
-		outtextxy(20, 150, "°´Enter¼üÎá½«°ïÄã×Ô¶¯´ò¿ª´ËÒ³ÃæÈ»ºó±¾³ÌĞò×Ô¶¯¹Ø±Õ£¬°´ÆäËû¼üÖ±½Ó¹Ø±Õ...");
+		outtextxy(20, 150, "æŒ‰Enteré”®å¾å°†å¸®ä½ è‡ªåŠ¨æ‰“å¼€æ­¤é¡µé¢ç„¶åæœ¬ç¨‹åºè‡ªåŠ¨å…³é—­ï¼ŒæŒ‰å…¶ä»–é”®ç›´æ¥å…³é—­...");
 		if(getch() == '\r')
 			ShellExecuteA(getHWnd(), "open", "http://tieba.baidu.com/p/1966519660", NULL, NULL, SW_SHOWMAXIMIZED);
 	}
@@ -38,30 +38,30 @@ bool mazeLock()
 {
 	Stack stk;
 	Map map;
-	Elem elem = {0, 2};  //×ª»»ÎªÑÚÂëÒÔºóµÄÈë¿Ú
+	Elem elem = {0, 2};  //è½¬æ¢ä¸ºæ©ç ä»¥åçš„å…¥å£
 	int width, height;
 	if(!map.initMap(g_filename)) return false;
 	map.printMap();
 	getch();
-	outtextxy(20, 200, "ÕıÔÚ¼èÄÑµØÊ¶±ğÕâ¸öµØÍ¼~~");
+	outtextxy(20, 200, "æ­£åœ¨è‰°éš¾åœ°è¯†åˆ«è¿™ä¸ªåœ°å›¾~~");
 	g_time = clock();
 	map.genMask();
 	width = map.getMaskWitdh();
 	height = map.getMaskHeight();
-	map.initStartPoint(2 * width); //²úÉúÑÚÂëÒÔºó£¬°Ñ³õÊ¼Î»ÖÃÉèÖÃÎª-1.
-	map.initStartPoint(3 * width); //Ã¿´Î¿ªÊ¼Ó¦¸ÃÏòÓÒ×ß£¬ËäÈ»²»ÒªÕâ¾äÒ²ÎŞËùÎ½¡£
+	map.initStartPoint(2 * width); //äº§ç”Ÿæ©ç ä»¥åï¼ŒæŠŠåˆå§‹ä½ç½®è®¾ç½®ä¸º-1.
+	map.initStartPoint(3 * width); //æ¯æ¬¡å¼€å§‹åº”è¯¥å‘å³èµ°ï¼Œè™½ç„¶ä¸è¦è¿™å¥ä¹Ÿæ— æ‰€è°“ã€‚
 	stk.push(elem);
 	if(!map.fuckit(stk)) return false;
 	g_time = clock() - g_time;
-	xyprintf(20, 300, "ÎÒ±íÊ¾ÓÃÁË %d ms Ö®ºóÖÕÓÚËãÍêÁË.", g_time);
-	xyprintf(20, 400, "3ÃëÖÓºó¸øÄãÑİÊ¾£¬²»ÏëµÈµÄ»°°´ÈÎÒâ¼üÂíÉÏ¿ªÊ¼!");
+	xyprintf(20, 300, "æˆ‘è¡¨ç¤ºç”¨äº† %d ms ä¹‹åç»ˆäºç®—å®Œäº†.", g_time);
+	xyprintf(20, 400, "3ç§’é’Ÿåç»™ä½ æ¼”ç¤ºï¼Œä¸æƒ³ç­‰çš„è¯æŒ‰ä»»æ„é”®é©¬ä¸Šå¼€å§‹!");
 	g_time = 3000;
 	while(!kbhit() && (g_time -= 100)) Sleep(100);
 	cleardevice();
 	map.showMask();
 	if(!map.showResult())
 	{
-		MessageBoxA(getHWnd(), "ËÆºõ³öÁËÊ²Ã´ÎÊÌâ£¬°´ÀíËµÓ¦¸Ã½âµÃ³öÀ´µÄ\r\nµ«ÊÇ£¬¹ÒµôÁË£¬ÖØĞÂÆô¶¯ÊÔÊÔ£¿", "Çó½â³¬¹ı10²½£¬×Ô¶¯Í£Ö¹", MB_OK);
+		MessageBoxA(getHWnd(), "ä¼¼ä¹å‡ºäº†ä»€ä¹ˆé—®é¢˜ï¼ŒæŒ‰ç†è¯´åº”è¯¥è§£å¾—å‡ºæ¥çš„\r\nä½†æ˜¯ï¼ŒæŒ‚æ‰äº†ï¼Œé‡æ–°å¯åŠ¨è¯•è¯•ï¼Ÿ", "æ±‚è§£è¶…è¿‡10æ­¥ï¼Œè‡ªåŠ¨åœæ­¢", MB_OK);
 	}
 	return true;
 }

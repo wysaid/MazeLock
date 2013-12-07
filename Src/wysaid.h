@@ -19,7 +19,7 @@ typedef struct Elem
 	int x, y;
 }Elem;
 
-typedef class Stack   //Îª·½±ãÊ¹ÓÃ£¬×Ô¼ºÊµÏÖÁËÒ»¸ö¼òµ¥µÄÕ»½á¹¹
+typedef class Stack   //ä¸ºæ–¹ä¾¿ä½¿ç”¨ï¼Œè‡ªå·±å®ç°äº†ä¸€ä¸ªç®€å•çš„æ ˆç»“æ„
 {
 public:
 	Stack();
@@ -59,5 +59,5 @@ private:
 bool getFileNameDlg(HWND hwnd, LPSTR pfilename);
 bool mazeLock();
 char reflect(const char*);
-char reflect(wchar_t);  //ÎŞÓÃ
+char reflect(wchar_t);  //æ— ç”¨
 #endif

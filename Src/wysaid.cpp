@@ -1,12 +1,12 @@
 #include "wysaid.h"
 
-const wchar_t g_wblocks[]= { L'©¥', L'©§',L'©³', L'©¿',L'©»', L'©·',L'©Ï',
-                 L'©ß',L'©Ç',L'©×',L'©ï'};
+const wchar_t g_wblocks[]= { L'â”', L'â”ƒ',L'â”', L'â”›',L'â”—', L'â”“',L'â”«',
+                 L'â”»',L'â”£',L'â”³',L'â•‹'};
 
-const char g_cblocks[][3]= { "©¥", "©§","©³", "©¿","©»", "©·", "©Ï",
-					"©ß", "©Ç", "©×", "©ï" };
+const char g_cblocks[][3]= { "â”", "â”ƒ","â”", "â”›","â”—", "â”“", "â”«",
+					"â”»", "â”£", "â”³", "â•‹" };
 
-const char g_mask[][10] = {  //Âï£¬ÒªÊÇ°ÑÕâ¸ö¸Ä³É¶ş½øÖÆ16Î»µÄshort²»¸æËß¿´´úÂëµÄÄã,²»ÖªµÀÄã»á²»»áµ°ÌÛ
+const char g_mask[][10] = {  //å˜›ï¼Œè¦æ˜¯æŠŠè¿™ä¸ªæ”¹æˆäºŒè¿›åˆ¶16ä½çš„shortä¸å‘Šè¯‰çœ‹ä»£ç çš„ä½ ,ä¸çŸ¥é“ä½ ä¼šä¸ä¼šè›‹ç–¼
 		"000111000", 
 		"010010010",
 		"000011010",
@@ -24,7 +24,7 @@ Stack::Stack()
 {
 	size = 0;
 	capacity = MAX_CAPACITY;
-	point = (Elem*)malloc(capacity * sizeof(Elem));   //ÎªÁËÊ¹ÓÃreallocÊ¡ÊÂ£¬²»ÓÃnew
+	point = (Elem*)malloc(capacity * sizeof(Elem));   //ä¸ºäº†ä½¿ç”¨reallocçœäº‹ï¼Œä¸ç”¨new
 }
 
 Stack::~Stack()
@@ -73,7 +73,7 @@ bool Map::initMap(const char* filename)
 		if(m_width > strlen(str)) break;
 		else if(m_width * m_height >= 40*BUFFER_SIZE)
 		{
-			MessageBox(getHWnd(), "ÃÔ¹¬±»¸Ä¶¯¹ı»òÕßÓĞµã´ó¹ş£¬ÆÁÄ»·Ö±æÂÊÏÂ²»ºÃÏÔÊ¾¡£", "ÓĞÎÊÌâ", MB_OK);
+			MessageBox(getHWnd(), "è¿·å®«è¢«æ”¹åŠ¨è¿‡æˆ–è€…æœ‰ç‚¹å¤§å“ˆï¼Œå±å¹•åˆ†è¾¨ç‡ä¸‹ä¸å¥½æ˜¾ç¤ºã€‚", "æœ‰é—®é¢˜", MB_OK);
 			break;
 		}
 	}
@@ -94,7 +94,7 @@ void Map::printMap()
 	fnt.lfQuality = DEFAULT_QUALITY;
 	fnt.lfWeight = FW_DONTCARE;
 	setfontbkcolor(DARKGRAY);
-	strcpy(fnt.lfFaceName, "ËÎÌå");
+	strcpy(fnt.lfFaceName, "å®‹ä½“");
 	setfont(&fnt);
 	for(int i = 0; i != m_height; ++i)
 	{
@@ -105,7 +105,7 @@ void Map::printMap()
 	fnt.lfWidth = 12;
 	fnt.lfHeight = 20;
 	setfont(&fnt);
-	outtextxy(20, SCR_HEIGHT - fnt.lfHeight - 10, "¶Á³öµÄµØÍ¼ÈçÉÏ£¬Èç¹û²»¶ÔÇë¹Ø±Õ²¢ÖØĞÂ¶ÁÈë£¬·ñÔòÇë°´ÈÎÒâ¼ü!");
+	outtextxy(20, SCR_HEIGHT - fnt.lfHeight - 10, "è¯»å‡ºçš„åœ°å›¾å¦‚ä¸Šï¼Œå¦‚æœä¸å¯¹è¯·å…³é—­å¹¶é‡æ–°è¯»å…¥ï¼Œå¦åˆ™è¯·æŒ‰ä»»æ„é”®!");
 }
 
 void Map::genMask()
@@ -143,7 +143,7 @@ void Map::showMask()
 	}
 }
 
-bool Map::showResult()     //±ØĞë²éÕÒ³É¹¦ºóµÄmap²ÅÄÜÊ¹ÓÃ±¾º¯Êı!
+bool Map::showResult()     //å¿…é¡»æŸ¥æ‰¾æˆåŠŸåçš„mapæ‰èƒ½ä½¿ç”¨æœ¬å‡½æ•°!
 {
 	Stack stk;
 	int i, cnt = 0, width, height, maskWidth, maskHeight;
@@ -169,7 +169,7 @@ bool Map::showResult()     //±ØĞë²éÕÒ³É¹¦ºóµÄmap²ÅÄÜÊ¹ÓÃ±¾º¯Êı!
 		bar(elem.x*width, elem.y*height, (elem.x+1)*width, (elem.y+1)*height);
 		Sleep(2);
 	}
-	outtextxy(20, SCR_HEIGHT - 40, "¸ã¶¨À²!Äã¿ÉÒÔÊÔÊÔÆäËûµÄµØÍ¼!");
+	outtextxy(20, SCR_HEIGHT - 40, "æå®šå•¦!ä½ å¯ä»¥è¯•è¯•å…¶ä»–çš„åœ°å›¾!");
 	flushkey();
 	getch();
 	return true;
@@ -226,21 +226,21 @@ char reflect(const char* block)
 	return -1;
 }
 
-char reflect(wchar_t block)  //Õâº¯ÊıÕæÊÇµ°ÌÛ
+char reflect(wchar_t block)  //è¿™å‡½æ•°çœŸæ˜¯è›‹ç–¼
 {
 	switch(block)
 	{
-	case L'©¥': return 0;
-	case L'©§': return 1;
-	case L'©³': return 2;
-	case L'©¿': return 3;
-	case L'©»': return 4;
-	case L'©·': return 5;
-	case L'©Ï': return 6;
-	case L'©ß': return 7;
-	case L'©Ç': return 8;
-	case L'©×': return 9;
-	case L'©ï': return 10;
+	case L'â”': return 0;
+	case L'â”ƒ': return 1;
+	case L'â”': return 2;
+	case L'â”›': return 3;
+	case L'â”—': return 4;
+	case L'â”“': return 5;
+	case L'â”«': return 6;
+	case L'â”»': return 7;
+	case L'â”£': return 8;
+	case L'â”³': return 9;
+	case L'â•‹': return 10;
 	}
 	return -1;
 }
@@ -248,8 +248,8 @@ char reflect(wchar_t block)  //Õâº¯ÊıÕæÊÇµ°ÌÛ
 bool getFileNameDlg(HWND hwnd, LPSTR pfilename)
 {
 	OPENFILENAMEA ofna;
-	char szFilter[] = "ÎÄ±¾ÎÄµµ (*.txt)\0*.txt\0"
-		"Ëæ±ãÊ²Ã´ºó×ºÀ²~ (*.*)\0*.*\0\0";
+	char szFilter[] = "æ–‡æœ¬æ–‡æ¡£ (*.txt)\0*.txt\0"
+		"éšä¾¿ä»€ä¹ˆåç¼€å•¦~ (*.*)\0*.*\0\0";
 	*pfilename = 0;
 	memset(&ofna, 0, sizeof(OPENFILENAMEA));
 	ofna.lStructSize = sizeof OPENFILENAMEA;
@@ -259,7 +259,7 @@ bool getFileNameDlg(HWND hwnd, LPSTR pfilename)
 	ofna.nMaxFile = MAX_PATH;
 	ofna.lpstrDefExt = "txt";
 	ofna.lpstrFile = pfilename;
-	ofna.lpstrTitle = "ÇëÕÒµ½´ıÆÆ½âÃÔ¹¬ÎÄ±¾ÎÄ¼ş!";
+	ofna.lpstrTitle = "è¯·æ‰¾åˆ°å¾…ç ´è§£è¿·å®«æ–‡æœ¬æ–‡ä»¶!";
 	ofna.Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
 	return !!GetOpenFileNameA(&ofna);
 }
