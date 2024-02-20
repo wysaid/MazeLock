@@ -1,25 +1,27 @@
 #include "maze.h"
 
-char g_filename[MAX_PATH];
 clock_t g_time;
+
+bool solveMaze(const char* filename);
 
 int main()
 {
+    char filename[MAX_PATH];
     initgraph(SCR_WIDTH, SCR_HEIGHT);
-    setrendermode(RENDER_AUTO);
+    setrendermode(RENDER_MANUAL);
     setcaption("请在弹出对话框内选择地图文本文件!");
     cleardevice();
-    if (getFileNameDlg(getHWnd(), g_filename))
+    if (getFileNameDlg(getHWnd(), filename))
     {
         setcaption("EGE之无聊专门解炮姐的迷宫小应用开始运转~~");
-        if (!mazeLock())
+        if (!solveMaze(filename))
         {
             cleardevice();
-            outtextxy(20, 200, "你这迷宫不科学啊! 为毛我走不粗去!坑爹呢!");
-            outtextxy(10, 300, "迷宫要在http://blog.misakamm.org/p/404生成啊亲!");
+            outtextxy(20, 200, "你这迷宫不科学啊! 搞不定呀...");
+            outtextxy(10, 300, "迷宫要在https://wysaid.org/p/maze.php生成!");
             outtextxy(20, 400, "按下Enter键吧，我把你送过去~~不然就不跟你玩了~~");
             if (getch() == '\r')
-                ShellExecuteA(getHWnd(), "open", "http://blog.misakamm.org/p/404", NULL, NULL, SW_SHOWMAXIMIZED);
+                ShellExecuteA(getHWnd(), "open", "https://wysaid.org/p/maze.php", NULL, NULL, SW_SHOWMAXIMIZED);
         }
     }
     else
@@ -34,14 +36,15 @@ int main()
     return 0;
 }
 
-bool mazeLock()
+bool solveMaze(const char* filename)
 {
     Stack stk;
     Map map;
     Elem elem = { 0, 2 }; //转换为掩码以后的入口
     int width, height;
-    if (!map.initMap(g_filename)) return false;
+    if (!map.initMap(filename)) return false;
     map.printMap();
+    delay_ms(100);
     getch();
     outtextxy(20, 200, "正在艰难地识别这个地图~~");
     g_time = clock();

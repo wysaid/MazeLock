@@ -1,6 +1,8 @@
 #ifndef _MAZE_H_
 #define _MAZE_H_
 
+#define SHOW_CONSOLE 1
+
 #include "graphics.h"
 
 #include <commdlg.h>
@@ -59,7 +61,6 @@ private:
 };
 
 bool getFileNameDlg(HWND hwnd, LPSTR pfilename);
-bool mazeLock();
 char reflect(const char*);
 char reflect(wchar_t); //无用
 #endif
